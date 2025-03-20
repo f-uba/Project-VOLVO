@@ -1,9 +1,10 @@
 ﻿using Application.Commands;
+using Application.Factory;
 using Application.Interfaces;
 using AutoMapper;
 using Domain.Entities.DTOs;
-using Domain.Entities.Models;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace Application.Handlers
 {
@@ -16,22 +17,16 @@ namespace Application.Handlers
         {
             try
             {
-                var vehicle = new Vehicle
-                {
-                    Chassis = new Chassis
-                    {
-                        Series = request.Series,
-                        Number = request.Number
-                    },
-                    NumberOfPassangers = (int)request.Type,
-                    Type = request.Type.GetDescription(),
-                    Color = request.Color
-                };
+                var vehicle = VehicleFactory.CreateVehicle(request.Series, request.Number, request.Color, request.Type);
 
-                _uof.VehicleRepository.Add(vehicle);
+                await _uof.VehicleRepository.Add(vehicle);
                 await _uof.Commit();
 
                 return _mapper.Map<VehicleDto>(vehicle);
+            }
+            catch (DbUpdateException ex)
+            {
+                throw new InvalidOperationException("Already have a vehicle with this series and number.", ex);
             }
             catch (Exception)
             {

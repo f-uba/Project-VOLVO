@@ -8,9 +8,9 @@ namespace Infrastructure.Persistence.Repositories
     {
         protected AppDbContext _context = context;
 
-        public virtual void Add(T entity)
+        public virtual async Task Add(T entity)
         {
-            _context.Set<T>().Add(entity);
+            await _context.Set<T>().AddAsync(entity);
         }
 
         public virtual void Delete(T entity)

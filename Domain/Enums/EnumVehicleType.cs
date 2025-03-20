@@ -5,10 +5,10 @@ namespace Domain.Enums
     public enum EnumVehicleType
     {
         [Description("Bus")]
-        Bus = 42,
+        Bus = 0,
         [Description("Car")]
-        Car = 4,
+        Car = 1,
         [Description("Truck")]
-        Truck = 1
+        Truck = 2
     }
 }

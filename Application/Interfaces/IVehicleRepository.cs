@@ -4,6 +4,7 @@ namespace Application.Interfaces
 {
     public interface IVehicleRepository : IRepository<Vehicle>
     {
-        Vehicle? GetBySeriesNumber(string series, uint number);
+        Task<IEnumerable<Vehicle>> GetAll();
+        Task<Vehicle?> GetBySeriesNumber(string series, uint number);
     }
 }

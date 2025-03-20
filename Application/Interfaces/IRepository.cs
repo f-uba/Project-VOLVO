@@ -12,7 +12,7 @@
         /// Add a new type
         /// </summary>
         /// <param name="entity"></param>
-        void Add(T entity);
+        Task Add(T entity);
 
         /// <summary>
         /// Update a type (or create with it doesn't exists)

@@ -33,7 +33,7 @@ IMapper mapper = mappingConfig.CreateMapper();
 builder.Services.AddSingleton(mapper);
 
 builder.Services.AddMediatR(cfg =>
-cfg.RegisterServicesFromAssembly(Assembly.GetAssembly(typeof(MapperProfile))));
+    cfg.RegisterServicesFromAssembly(Assembly.GetAssembly(typeof(MapperProfile))!));
 
 var app = builder.Build();
 

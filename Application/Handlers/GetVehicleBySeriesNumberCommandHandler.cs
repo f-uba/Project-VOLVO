@@ -11,16 +11,16 @@ namespace Application.Handlers
         private readonly IMapper _mapper = mapper;
         private readonly IUnitOfWork _uof = uof;
 
-        public Task<VehicleDto?> Handle(GetVehicleBySeriesNumberCommand request, CancellationToken cancellationToken)
+        public async Task<VehicleDto?> Handle(GetVehicleBySeriesNumberCommand request, CancellationToken cancellationToken)
         {
             try
             {
-                var vehicle = _uof.VehicleRepository.GetBySeriesNumber(request.Series, request.Number);
+                var vehicle = await _uof.VehicleRepository.GetBySeriesNumber(request.Series, request.Number);
 
                 if (vehicle != null)
                 {
                     var vehicleDto = _mapper.Map<VehicleDto>(vehicle);
-                    return Task.FromResult<VehicleDto?>(vehicleDto);
+                    return vehicleDto;
                 }
             }
             catch (Exception)
@@ -28,7 +28,7 @@ namespace Application.Handlers
                 throw;
             }
 
-            return Task.FromResult<VehicleDto?>(new());
+            return null;
         }
     }
 }

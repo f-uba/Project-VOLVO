@@ -14,9 +14,14 @@ namespace Infrastructure.Persistence.Repositories
                 .Include(v => v.Chassis);
         }
 
-        public Vehicle? GetBySeriesNumber(string series, uint number)
+        public async Task<IEnumerable<Vehicle>> GetAll()
         {
-            return Get().FirstOrDefault(v => v.Chassis.Series == series && v.Chassis.Number == number);
+            return await Get().ToListAsync();
+        }
+
+        public async Task<Vehicle?> GetBySeriesNumber(string series, uint number)
+        {
+            return await Get().FirstOrDefaultAsync(v => v.Chassis != null && v.Chassis.Series == series && v.Chassis.Number == number);
         }
     }
 }

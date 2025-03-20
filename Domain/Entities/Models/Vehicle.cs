@@ -8,15 +8,15 @@ namespace Domain.Entities.Models
         public Guid Id { get; set; } = Guid.NewGuid();
 
         [Required]
-        public required string Type { get; set; }
+        public string? Type { get; set; }
 
         [Required]
-        public required int NumberOfPassangers { get; set; }
+        public int NumberOfPassengers { get; set; }
 
         [Required]
-        public required string Color { get; set; }
+        public string? Color { get; set; }
 
-
-        public required Chassis Chassis { get; set; }
+        [Required]
+        public Chassis? Chassis { get; set; }
     }
 }

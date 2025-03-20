@@ -15,7 +15,7 @@ namespace Application.Handlers
         {
             try
             {
-                var vehicle = _uof.VehicleRepository.GetBySeriesNumber(request.Series, request.Number);
+                var vehicle = await _uof.VehicleRepository.GetBySeriesNumber(request.Series, request.Number);
                 if (vehicle != null)
                 {
                     vehicle.Color = request.Color;
