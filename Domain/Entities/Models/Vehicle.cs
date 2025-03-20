@@ -1,21 +1,22 @@
-﻿using Domain.Enums;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Domain.Entities.Models
 {
-    public sealed class Vehicle
+    public class Vehicle
     {
         [Key]
-        public required Chassis ChassisId { get; set; }
+        public Guid Id { get; set; } = Guid.NewGuid();
 
         [Required]
-        public required EnumVehicleType Type { get; set; }
+        public required string Type { get; set; }
 
-        [NotMapped]
-        public int Passangers => (int)Type;
+        [Required]
+        public required int NumberOfPassangers { get; set; }
 
         [Required]
         public required string Color { get; set; }
+
+
+        public required Chassis Chassis { get; set; }
     }
 }

@@ -1,21 +1,23 @@
 ﻿using Application.Interfaces;
 using Domain.Entities.Models;
 using Infrastructure.Persistence.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Persistence.Repositories
 {
-    internal sealed class VehicleRepository : Repository<Vehicle>, IVehicleRepository
+    internal sealed class VehicleRepository(AppDbContext context) : Repository<Vehicle>(context), IVehicleRepository
     {
-        public VehicleRepository(AppDbContext context) : base(context) { }
-
-        public List<Vehicle> GetAll()
+        public override IQueryable<Vehicle> Get()
         {
-            throw new NotImplementedException();
+            return _context.Set<Vehicle>()
+                .AsNoTracking()
+                .Include(v => v.Chassis);
         }
 
-        public Vehicle GetByChassisId(Chassis chassisId)
+        public Vehicle? GetBySeriesNumber(string series, uint number)
         {
-            throw new NotImplementedException();
+            return Get().FirstOrDefault(v => v.Chassis.Series == series && v.Chassis.Number == number);
         }
     }
 }
+

@@ -1,9 +1,14 @@
-﻿namespace Domain.Enums
+﻿using System.ComponentModel;
+
+namespace Domain.Enums
 {
     public enum EnumVehicleType
     {
-        Truck = 1,
+        [Description("Bus")]
+        Bus = 42,
+        [Description("Car")]
         Car = 4,
-        Bus = 42
+        [Description("Truck")]
+        Truck = 1
     }
 }
