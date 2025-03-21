@@ -28,3 +28,11 @@ To run the project, follow these steps:
    - This will allow you to interact with the API endpoints.
 
 6. **Run the unit tests**: dotnet tests
+
+**Vehicle Type for clarity**:
+
+   - Bus = 0
+
+   - Car = 1
+
+   - Truck = 2
