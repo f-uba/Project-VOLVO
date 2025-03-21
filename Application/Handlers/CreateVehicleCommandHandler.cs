@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Application.Handlers
 {
-    public sealed class CreateVehicleCommandHandler(IUnitOfWork uof, IMapper mapper) : IRequestHandler<CreateVehicleCommand, VehicleDto?>
+    internal sealed class CreateVehicleCommandHandler(IUnitOfWork uof, IMapper mapper) : IRequestHandler<CreateVehicleCommand, VehicleDto?>
     {
         private readonly IMapper _mapper = mapper;
         private readonly IUnitOfWork _uof = uof;

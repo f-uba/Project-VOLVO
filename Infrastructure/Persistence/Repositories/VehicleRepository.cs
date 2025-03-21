@@ -10,8 +10,8 @@ namespace Infrastructure.Persistence.Repositories
         public override IQueryable<Vehicle> Get()
         {
             return _context.Set<Vehicle>()
-                .AsNoTracking()
-                .Include(v => v.Chassis);
+                .Include(v => v.Chassis)
+                .AsNoTracking();
         }
 
         public async Task<IEnumerable<Vehicle>> GetAll()

@@ -6,7 +6,7 @@ using MediatR;
 
 namespace Application.Handlers
 {
-    public sealed class UpdateVehicleCommandHandler(IUnitOfWork uof, IMapper mapper) : IRequestHandler<UpdateVehicleCommand, VehicleDto?>
+    internal sealed class UpdateVehicleCommandHandler(IUnitOfWork uof, IMapper mapper) : IRequestHandler<UpdateVehicleCommand, VehicleDto?>
     {
         private readonly IMapper _mapper = mapper;
         private readonly IUnitOfWork _uof = uof;

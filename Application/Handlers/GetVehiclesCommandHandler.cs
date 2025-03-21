@@ -6,7 +6,7 @@ using MediatR;
 
 namespace Application.Handlers
 {
-    public sealed class GetVehiclesCommandHandler(IUnitOfWork uof, IMapper mapper) : IRequestHandler<GetVehiclesCommand, ICollection<VehicleDto>?>
+    internal sealed class GetVehiclesCommandHandler(IUnitOfWork uof, IMapper mapper) : IRequestHandler<GetVehiclesCommand, ICollection<VehicleDto>?>
     {
         private readonly IMapper _mapper = mapper;
         private readonly IUnitOfWork _uof = uof;
